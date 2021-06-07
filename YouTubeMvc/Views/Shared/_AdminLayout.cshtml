@@ -1,6 +1,4 @@
-﻿
-@{ Layout = null; }
-
+﻿@{ Layout = null; }
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -9,44 +7,25 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>MVC Proje Kampı</title>
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
-    <!-- IonIcons -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.css">
-
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/ekko-lightbox/ekko-lightbox.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
     <script src="~/AdminLTE-3.0.4/plugins/summernote/summernote.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        <!-- Navbar -->
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="~/AdminLTE-3.0.4/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
-            <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                @*<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="~/AdminLTE-3.0.4/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Admin Paneli</a>
-                    </div>
-                </div>*@
-                <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
                             <a href="/AdminCategory/Index" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -168,37 +147,51 @@
                         </li>
                     </ul>
                 </nav>
-                <!-- /.sidebar-menu -->
             </div>
-            <!-- /.sidebar -->
         </aside>
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Main content -->
             <div class="content">
                 @RenderBody()
-                <!-- /.container-fluid -->
+
             </div>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong>Copyright &copy; @DateTime.Now.ToShortDateString() <a href="#">AdminLTE.io</a>.</strong> All rightsreserved.
+        </footer>
     </div>
-
     <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
-
     <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
-
     <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
     <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
     <script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
-    <!-- Page Script -->
     <script>
-    $(function () {
-            //Add text editor
+        $(function () {
             $('#compose-textarea').summernote()
         })</script>
+    <script src="~/AdminLTE-3.0.4/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/filterizr/jquery.filterizr.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
+
+            $('.filter-container').filterizr({ gutterPixels: 3 });
+            $('.btn[data-filter]').on('click', function () {
+                $('.btn[data-filter]').removeClass('active');
+                $(this).addClass('active');
+            });
+        })
+    </script>
 </body>
 </html>

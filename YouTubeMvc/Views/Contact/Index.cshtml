@@ -11,12 +11,11 @@
                 <h1>Mesajlar</h1>
             </div>
         </div>
-    </div><!-- /.container-fluid -->
+    </div>
 </section>
 <section class="content">
     <div class="row">
         @Html.Action("ContactMenuPartial", "Contact")
-        <!-- /.col -->
         <div class="col-md-9">
             <div class="card card-primary card-outline">
                 <div class="card-header">
@@ -31,12 +30,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.card-tools -->
                 </div>
-                <!-- /.card-header -->
                 <div class="card-body p-0">
                     <div class="mailbox-controls">
-                        <!-- Check all button -->
                         <button type="button" class="btn btn-default btn-sm checkbox-toggle">
                             <i class="far fa-square"></i>
                         </button>
@@ -45,7 +41,6 @@
                             <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
                             <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                         </div>
-                        <!-- /.btn-group -->
                         <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
                         <div class="float-right">
                             1-50/200
@@ -53,9 +48,7 @@
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
                             </div>
-                            <!-- /.btn-group -->
                         </div>
-                        <!-- /.float-right -->
                     </div>
                     <div class="table-responsive mailbox-messages">
                         <table class="table table-hover table-striped">
@@ -76,18 +69,13 @@
                         </td>
                         <td class="mailbox-attachment"></td>
                         <td class="mailbox-date">@(((DateTime)item.ContactDate).ToString("dd-MMM-yyyy"))</td>
-                    </tr>
-}
+                    </tr>}
                             </tbody>
                         </table>
-                        <!-- /.table -->
                     </div>
-                    <!-- /.mail-box-messages -->
                 </div>
-                <!-- /.card-body -->
                 <div class="card-footer p-0">
                     <div class="mailbox-controls">
-                        <!-- Check all button -->
                         <button type="button" class="btn btn-default btn-sm checkbox-toggle">
                             <i class="far fa-square"></i>
                         </button>
@@ -96,7 +84,6 @@
                             <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
                             <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                         </div>
-                        <!-- /.btn-group -->
                         <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
                         <div class="float-right">
                             1-50/200
@@ -104,16 +91,11 @@
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
                             </div>
-                            <!-- /.btn-group -->
                         </div>
-                        <!-- /.float-right -->
                     </div>
                 </div>
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col -->
     </div>
-    <!-- /.row -->
 </section>
 

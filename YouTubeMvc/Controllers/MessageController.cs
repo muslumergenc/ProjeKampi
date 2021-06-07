@@ -55,7 +55,7 @@ namespace YouTubeMvc.Controllers
                 results = messagevalidator.Validate(p);
                 if (results.IsValid)
                 {
-                    p.MessageDate = DateTime.Now;
+                    p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     p.SenderMail = "admin@mail.com";
                     p.isDraft = true;
                     mm.MessageAdd(p);
