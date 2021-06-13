@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using YouTubeMvc.Models;
+
 namespace YouTubeMvc.Controllers
 {
     public class LoginController : Controller
@@ -15,14 +17,14 @@ namespace YouTubeMvc.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
             return View();
         }
         [HttpPost]
         public ActionResult Index(Admin admin)
         {
-          var adminValues= manager.GetList().Where(x => x.AdminUserName == admin.AdminUserName && x.AdminPassword==admin.AdminPassword).FirstOrDefault();
-            if (adminValues!=null)
+            string sifre1 = Sifrele.MD5Olustur(admin.AdminPassword);
+            var adminValues = manager.GetList().Where(x => x.AdminUserName == admin.AdminUserName && x.AdminPassword == sifre1).FirstOrDefault();
+            if (adminValues != null)
             {
                 FormsAuthentication.SetAuthCookie(admin.AdminUserName, false);
                 Session["AdminUserName"] = adminValues.AdminUserName;
