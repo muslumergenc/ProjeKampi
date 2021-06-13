@@ -13,7 +13,8 @@ namespace YouTubeMvc.Controllers
 {
     public class AdminCategoryController : Controller
     {
-        readonly CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        readonly private CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        [Authorize(Roles ="B")]
         public ActionResult Index()
         {
             var categoryvalues = cm.GetList();

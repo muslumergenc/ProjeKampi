@@ -32,7 +32,6 @@ namespace BusinessLayer.Concrete
         {
             _aboutDAL.Update(about);
         }
-
         public About GetById(int id)
         {
             return _aboutDAL.Get(x => x.AboutID == id);

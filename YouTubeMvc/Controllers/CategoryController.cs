@@ -13,7 +13,8 @@ namespace YouTubeMvc.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        readonly private CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        [Authorize]
         public ActionResult Index()
         {
             return View();

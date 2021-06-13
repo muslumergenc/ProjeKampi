@@ -1,0 +1,10 @@
+﻿@using EntityLayer.Concrete
+@model List<Skills>
+@{
+    ViewBag.Title = "Yetenekler";
+    Layout = "~/Views/Shared/_YetenekLayout.cshtml";
+}
+@foreach (var item in Model)
+{
+    <div class='bar_group__bar thin' label='@item.SkillName ( @item.Range% )' value='@item.Range'></div>
+}

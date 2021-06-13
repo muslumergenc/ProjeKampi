@@ -10,17 +10,29 @@
     <tr>
         <th>#</th>
         <th>Hakkımda Başlığı</th>
+        <th>Görsel-1</th>
+        <th>Görsel-2</th>
         <th>Aktif Yap</th>
         <th>Pasif Yap</th>
+        <th>Güncelle</th>
+        <th>Sil</th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.AboutID</td>
-            <td>Başlık</td>
-            <td><a href="" class="btn btn-warning">Aktif Yap</a></td>
-            <td><a href="" class="btn btn-danger">Pasif Yap</a></td>
-        </tr>
+<tr>
+    <td>@item.AboutID</td>
+    <td>@item.AboutDetails1</td>
+    <td>@item.AboutImage1</td>
+    <td>@item.AboutImage2</td>
+    <td>
+        @if (item.Activation == true)
+        {<a href="/About/AktifMi/@item.AboutID" class="btn btn-warning">Pasif Yap</a>}
+        else
+        {<a href="/About/AktifMi/@item.AboutID" class="btn btn-success">Aktif Yap</a>}
+    </td>
+    <td><a href="/About/EditAbout/@item.AboutID" class="btn btn-info">Güncelle</a></td>
+    <td><a href="/About/DeleteAbout/@item.AboutID" class="btn btn-danger">Sil</a></td>
+</tr>
     }
 </table>
 @Html.Action("AboutPartial", "About")

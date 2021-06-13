@@ -13,9 +13,9 @@ namespace YouTubeMvc.Controllers
 {
     public class WriterController : Controller
     {
-        WriterManager wm = new WriterManager(new EfWriterDal());
-        WriterValidator writervalidator = new WriterValidator();
-
+        readonly private WriterManager wm = new WriterManager(new EfWriterDal());
+        readonly WriterValidator writervalidator = new WriterValidator();
+        [Authorize]
         public ActionResult Index()
         {
             var WriterValues = wm.GetList();

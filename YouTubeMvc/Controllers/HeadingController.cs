@@ -12,9 +12,10 @@ namespace YouTubeMvc.Controllers
     public class HeadingController : Controller
     {
         // GET: Heading
-        HeadingManager hm = new HeadingManager(new EfHeadingDal());
-        CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        readonly private HeadingManager hm = new HeadingManager(new EfHeadingDal());
+        readonly private CategoryManager cm = new CategoryManager(new EfCategoryDal());
         WriterManager wm = new WriterManager(new EfWriterDal());
+        [Authorize]
         public ActionResult Index()
         {
             var headingvalues = hm.GetList();

@@ -12,7 +12,8 @@ namespace YouTubeMvc.Controllers
     {
         // GET: Content
 
-        ContentManager cm = new ContentManager(new EfContentDal());
+        readonly private ContentManager cm = new ContentManager(new EfContentDal());
+        [Authorize]
         public ActionResult Index()
         {
             return View();

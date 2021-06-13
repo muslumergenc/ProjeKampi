@@ -10,7 +10,8 @@ namespace YouTubeMvc.Controllers
 {
     public class GalleryController : Controller
     {
-        ImageFileManager ifm = new ImageFileManager(new EfImageFileDal());
+        readonly private ImageFileManager ifm = new ImageFileManager(new EfImageFileDal());
+        [Authorize]
         public ActionResult Index()
         {
             var files = ifm.GetList();

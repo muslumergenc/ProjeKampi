@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace EntityLayer.Concrete
 {
@@ -13,9 +14,11 @@ namespace EntityLayer.Concrete
         public int AboutID { get; set; }
         
         [StringLength(1000)]
+        [AllowHtml]
         public string AboutDetails1 { get; set; }
 
         [StringLength(1000)]
+        [AllowHtml]
         public string AboutDetails2 { get; set; }
 
         [StringLength(100)]
@@ -23,5 +26,6 @@ namespace EntityLayer.Concrete
 
         [StringLength(100)]
         public string AboutImage2 { get; set; }
+        public bool Activation { get; set; }
     }
 }

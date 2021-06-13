@@ -24,6 +24,7 @@ namespace EntityLayer.Concrete
         [AllowHtml]
         public string MessageContent { get; set; }
         public DateTime MessageDate { get; set; }
+        public bool isRead { get; set; }
         public bool isDraft { get; set; }
     }
 }

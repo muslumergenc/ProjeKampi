@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.About
+@{
+    ViewBag.Title = "EditAbout";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Hakkımızda Güncelleme Sayfası</h2>
+@using (Html.BeginForm("EditAbout", "About", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.Label("About Id")
+    @Html.TextBoxFor(x => x.AboutID, new { @class = "form-control" })
+    <br /> <br />
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x => x.AboutDetails1, new { @class = "form-control" })
+    <br />
+    @Html.Label("Açıklama")
+    @Html.TextAreaFor(x=> x.AboutDetails2,new { @class = "form-control",@id="compose-textarea" })
+    <br />
+    @Html.Label("Görsel-1")
+    @Html.TextBoxFor(x => x.AboutImage1, new { @class = "form-control" })
+    <br />
+    @Html.Label("Görsel-2")
+    @Html.TextBoxFor(x => x.AboutImage2, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+</div>}
+
+
+

@@ -26,14 +26,19 @@
             <div class="sidebar">
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item has-treeview menu-open">
-                            <a href="/AdminCategory/Index" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Kategoriler
-                                </p>
-                            </a>
-                        </li>
+
+                        @if (User.IsInRole("B"))
+                        {
+            <li class="nav-item has-treeview">
+                <a href="/AdminCategory/Index" class="nav-link">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Kategoriler
+                    </p>
+                </a>
+            </li>
+}
+
                         <li class="nav-item">
                             <a href="/Heading/Index" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
@@ -95,14 +100,6 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>
-                                <p>
-                                    Yazılar
-                                </p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
@@ -124,6 +121,14 @@
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
                                     Hata Sayfaları
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="/Skills/Index" class="nav-link">
+                                <i class="nav-icon far fa-envelope"></i>
+                                <p>
+                                    Yetenek Kartım
                                 </p>
                             </a>
                         </li>
@@ -152,14 +157,13 @@
         <div class="content-wrapper">
             <div class="content">
                 @RenderBody()
-
             </div>
         </div>
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; @DateTime.Now.ToShortDateString() <a href="#">AdminLTE.io</a>.</strong> All rightsreserved.
+            <strong>Copyright &copy; @DateTime.Now.ToShortDateString() </strong> All rightsreserved.
         </footer>
     </div>
     <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>

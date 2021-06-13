@@ -10,14 +10,12 @@
                     <h1>Gelen Mesaj Detayları</h1>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
                 @Html.Action("ContactMenuPartial", "Contact")
-                <!-- /.col -->
                 <div class="col-md-9">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
@@ -27,7 +25,6 @@
                                 <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
                             </div>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body p-0">
                             <div class="mailbox-read-info">
                                 <h5>@Html.DisplayFor(x => x.Subject)</h5>
@@ -37,20 +34,13 @@
                                     <span class="mailbox-read-time float-right"> @Model.MessageDate.ToString("dd-MMM-yyyy")</span>
                                 </h6>
                             </div>
-                            <!-- /.mailbox-read-info -->
-                            <!-- /.mailbox-controls -->
                             <div class="mailbox-read-message">
                                 <p>@Html.DisplayFor(x => x.MessageContent)</p>
                             </div>
-                            <!-- /.mailbox-read-message -->
                         </div>
-                        <!-- /.card-footer -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
     </section>
 

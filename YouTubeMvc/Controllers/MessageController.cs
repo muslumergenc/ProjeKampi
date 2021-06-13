@@ -13,8 +13,9 @@ namespace YouTubeMvc.Controllers
 {
     public class MessageController : Controller
     {
-        MessageManager mm = new MessageManager(new EfMessageDal());
-        MessageValidator messagevalidator = new MessageValidator();
+        readonly private MessageManager mm = new MessageManager(new EfMessageDal());
+        readonly private MessageValidator messagevalidator = new MessageValidator();
+        [Authorize]
         public ActionResult Inbox()
         {
             var messagelist = mm.GetListInbox();
@@ -30,6 +31,18 @@ namespace YouTubeMvc.Controllers
         public ActionResult GetInboxMessageDetails(int id)
         {
             var values = mm.GetById(id);
+            if (values != null)
+            {
+                values.MessageID = mm.GetById(id).MessageID;
+                values.isDraft = mm.GetById(id).isDraft;
+                values.MessageContent = mm.GetById(id).MessageContent;
+                values.MessageDate = mm.GetById(id).MessageDate;
+                values.ReceiverMail = mm.GetById(id).ReceiverMail;
+                values.SenderMail = mm.GetById(id).SenderMail;
+                values.Subject = mm.GetById(id).Subject;
+                values.isRead = true;
+                mm.MessageUpdate(values);
+            }
             return View(values);
         }
 

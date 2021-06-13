@@ -1,30 +1,38 @@
-﻿<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+﻿
+@model EntityLayer.Concrete.About
+<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
     Yeni Hakkımızda Yazı Girişi
 </button>
-
 <div class="modal" id="Modal1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">Hakkımızda Metin Girişi</h2>
             </div>
-            <form method="post" action="/About/AddAbout/">
-                <div class="modal-body">
-                    <label>Hakkımızda Metin 1</label>
-                    <input type="text" name="AbuotDetails1" class="form-control" />
-                    <br />
-                    <label>Hakkımızda Metin 2</label>
-                    <input type="text" name="AbuotDetails2" class="form-control" />
-                    <br />
-                    <label>Hakkımızda Görsel 1</label>
-                    <input type="text" name="AbuotImage1" class="form-control" />
-                    <br />
-                    <label>Hakkımızda Görsel 2</label>
-                    <input type="text" name="AbuotImage2" class="form-control" />
-                    <br />
-                    <button class="btn btn-success">Kaydet</button>
-                </div>
-            </form>
+            @using (Html.BeginForm("AddAbout", "About", FormMethod.Post))
+            {
+        <div class="modal-body">
+            @Html.Label("Başlık")
+            @Html.TextBoxFor(x => x.AboutDetails1, new { @class = "form-control" })
+          
+            @Html.ValidationMessageFor(x => x.AboutDetails1)
+            <br />
+            @Html.Label("Açıklama")
+            @Html.TextBoxFor(x => x.AboutDetails2, new { @class = "form-control" })
+         
+            @Html.ValidationMessageFor(x => x.AboutDetails2)
+            <br />
+            @Html.Label("Görsel-1")
+            @Html.TextBoxFor(x => x.AboutImage1, new { @class = "form-control" })
+       
+            @Html.ValidationMessageFor(x => x.AboutImage1)
+            <br />
+            @Html.Label("Görsel-2")
+            @Html.TextBoxFor(x => x.AboutImage2, new { @class = "form-control" })
+            <br />
+            <button class="btn btn-success">Kaydet</button>
+        </div>
+        }
         </div>
     </div>
 </div>
