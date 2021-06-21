@@ -74,34 +74,13 @@
     <Compile Include="EntityFramework\EfMessageDal.cs" />
     <Compile Include="EntityFramework\EfSkillDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
-    <Compile Include="Migrations\202106061219126_InitialCreate.cs" />
-    <Compile Include="Migrations\202106061219126_InitialCreate.designer.cs">
-      <DependentUpon>202106061219126_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106112137322_mig_adminTable.cs" />
-    <Compile Include="Migrations\202106112137322_mig_adminTable.designer.cs">
-      <DependentUpon>202106112137322_mig_adminTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106112359182_mig_MessageRead.cs" />
-    <Compile Include="Migrations\202106112359182_mig_MessageRead.designer.cs">
-      <DependentUpon>202106112359182_mig_MessageRead.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106130003389_mig_ConractRead.cs" />
-    <Compile Include="Migrations\202106130003389_mig_ConractRead.designer.cs">
-      <DependentUpon>202106130003389_mig_ConractRead.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106130054017_mig_AboutEdit.cs" />
-    <Compile Include="Migrations\202106130054017_mig_AboutEdit.designer.cs">
-      <DependentUpon>202106130054017_mig_AboutEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106131451500_add_SkillsMig.cs" />
-    <Compile Include="Migrations\202106131451500_add_SkillsMig.designer.cs">
-      <DependentUpon>202106131451500_add_SkillsMig.cs</DependentUpon>
+    <Compile Include="Migrations\202106181440298_LastDbEdit.cs" />
+    <Compile Include="Migrations\202106181440298_LastDbEdit.designer.cs">
+      <DependentUpon>202106181440298_LastDbEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -113,23 +92,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106061219126_InitialCreate.resx">
-      <DependentUpon>202106061219126_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106112137322_mig_adminTable.resx">
-      <DependentUpon>202106112137322_mig_adminTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106112359182_mig_MessageRead.resx">
-      <DependentUpon>202106112359182_mig_MessageRead.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106130003389_mig_ConractRead.resx">
-      <DependentUpon>202106130003389_mig_ConractRead.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106130054017_mig_AboutEdit.resx">
-      <DependentUpon>202106130054017_mig_AboutEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106131451500_add_SkillsMig.resx">
-      <DependentUpon>202106131451500_add_SkillsMig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106181440298_LastDbEdit.resx">
+      <DependentUpon>202106181440298_LastDbEdit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

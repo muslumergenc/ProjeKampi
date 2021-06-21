@@ -23,5 +23,8 @@
     @Html.Label("Kategori")
     @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })
     <br />
+    @Html.Label("Aktif")
+   @Html.CheckBoxFor(x=> x.HeadingStatus,new {@class= "icheck-primary d-inline" })
+    <br />
     <button class="btn btn-success">Güncelle</button>
 </div>}

@@ -3,6 +3,7 @@ using DataAccessLayer.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 
@@ -10,6 +11,7 @@ namespace YouTubeMvc.Roles
 {
     public class AdminRoleProvider : RoleProvider
     {
+        readonly private AdminManager adminManager = new AdminManager(new EfAdminDal());
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
@@ -39,12 +41,23 @@ namespace YouTubeMvc.Roles
 
         public override string[] GetRolesForUser(string username)
         {
-            AdminManager manager = new AdminManager(new EfAdminDal());
-            var values = manager.GetList().FirstOrDefault(x=> x.AdminUserName==username);
-            return new string[]
-            {values.AdminRole};
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                var userNameHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(username));
+                var user = adminManager.GetList();
+                foreach (var item in user)
+                {
+                    for (int i = 0; i < userNameHash.Length; i++)
+                    {
+                        if (userNameHash[i] == item.AdminUserName[i])
+                        {
+                            return new string[] { item.AdminRole };
+                        }
+                    }
+                }
+                return new string[] { };
+            }
         }
-
         public override string[] GetUsersInRole(string roleName)
         {
             throw new NotImplementedException();

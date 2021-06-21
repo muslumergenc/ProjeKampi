@@ -28,7 +28,7 @@ namespace YouTubeMvc.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(Skills skills)
         {
             if (ModelState.IsValid)

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -14,6 +13,7 @@
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -23,8 +23,7 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="text-center">Hoş Geldiniz</p>
-
-                @*<form action="#" method="post">*@
+                <p class="text-center text-danger"> @ViewData["ErrorMessage"] </p>
                 @using (Html.BeginForm("Index", "Login", FormMethod.Post))
                 {
                     <div class="input-group mb-3">
@@ -43,22 +42,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
+                    <div class="input-group mb-3">
+                            @*<div class="icheck-primary">
                                 <input type="checkbox" id="remember">
                                 <label for="remember">
                                     Beni Hatırla
                                 </label>
+                            </div>*@
+                            <div class="col-12">
+                                <div class="g-recaptcha" data-sitekey="6Lfw6T8bAAAAAJtjSvu3jwexvnigeu-sTp-uvd-R"></div>
+                                <button type="submit" class="btn btn-primary btn-block">Giriş</button>
                             </div>
-                        </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Giriş</button>
-                        </div>
                     </div>
                 }
-                @*</form>*@
-
                 <p class="mb-1">
                     <a href="forgot-password.html">Şifremi Unuttum</a>
                 </p>

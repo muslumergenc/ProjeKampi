@@ -46,13 +46,13 @@ namespace YouTubeMvc.Controllers
             string topContact = _Context.Contacts.Count().ToString();
             ViewBag.TopContact = topContact;
 
-            string topMessage = _Context.Messages.Count(x => x.ReceiverMail == "admin@mail.com").ToString();
+            string topMessage = _Context.Messages.Count().ToString();
             ViewBag.TopMessage = topMessage;
 
-            string receiverMail = _Context.Messages.Count(x => x.ReceiverMail == "admin@mail.com" && x.isRead==false).ToString();
+            string receiverMail = _Context.Messages.Count(x => x.isRead==false).ToString();
             ViewBag.receiverMail = receiverMail;
 
-            string senderMail = _Context.Messages.Count(x => x.SenderMail == "admin@mail.com" && x.isRead == false).ToString();
+            string senderMail = _Context.Messages.Count(x =>x.isRead == false).ToString();
             ViewBag.senderMail = senderMail;
 
             string contact = _Context.Contacts.Count(x=> x.IsRead==false).ToString();

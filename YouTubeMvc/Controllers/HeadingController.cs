@@ -18,7 +18,7 @@ namespace YouTubeMvc.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var headingvalues = hm.GetList();
+            var headingvalues = hm.GetList().Where(x=> x.HeadingStatus==true).ToList();
             return View(headingvalues);
         }
 
