@@ -1,5 +1,7 @@
 ﻿@using EntityLayer.Concrete
-@model List<Heading>
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Heading>
 @{
     ViewBag.Title = "AllHeading";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -11,19 +13,15 @@
     string badgeStatusColor = "";
     string headingStatus = ""; }
 
-
-<!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
             </div>
         </div>
-    </div><!-- /.container-fluid -->
+    </div>
 </section>
-<!-- Main content -->
 <section class="content">
-    <!-- Default box -->
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Başlık İşlemleri</h3>
@@ -135,4 +133,7 @@
         </div>
     </div>
 </section>
-
+@Html.PagedListPager((IPagedList)Model, p => Url.Action("AllHeading", new { p }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string> { "page-link" }
+})

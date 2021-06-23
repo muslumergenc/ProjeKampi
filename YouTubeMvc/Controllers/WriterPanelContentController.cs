@@ -50,9 +50,5 @@ namespace YouTubeMvc.Controllers
             cm.ContentAddBL(content);
             return RedirectToAction("MyContent");
         }
-        public ActionResult ToDoList(int id) 
-        {
-            return View();
-        }
     }
 }

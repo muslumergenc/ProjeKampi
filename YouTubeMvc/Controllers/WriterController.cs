@@ -45,26 +45,6 @@ namespace YouTubeMvc.Controllers
             authService.WriterAdd(editDto);
             return View("Index");
         }
-        //[HttpPost]
-        //public ActionResult AddWriter(Writer p)
-        //{
-        //    IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
-        //   ValidationResult results = writervalidator.Validate(p);
-        //   if (results.IsValid)
-        //   {
-
-        //    wm.WriterAdd(p);
-        //    return RedirectToAction("Index");
-        //   }
-        //   else
-        //   {
-        //   foreach (var item in results.Errors)
-        //   {
-        //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-        //      }
-        //   }
-        //   return View();
-        //}
 
         [HttpGet]
         public ActionResult EditWriter(int id)
@@ -82,7 +62,6 @@ namespace YouTubeMvc.Controllers
             };
             return View(editDto);
         }
-
         [HttpPost]
         public ActionResult EditWriter(WriterEditDto writerEditDto)
         {

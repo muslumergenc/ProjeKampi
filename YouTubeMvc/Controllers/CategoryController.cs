@@ -35,7 +35,6 @@ namespace YouTubeMvc.Controllers
         [HttpPost]
         public ActionResult AddCategory(Category p)
         {
-            //cm.CategoryAddBLL(p);
             CategoryValidator categoryValidator = new CategoryValidator();
             ValidationResult results = categoryValidator.Validate(p);
             if (results.IsValid)

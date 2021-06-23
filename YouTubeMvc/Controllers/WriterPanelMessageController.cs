@@ -19,13 +19,16 @@ namespace YouTubeMvc.Controllers
         readonly private MessageValidator messagevalidator = new MessageValidator();
         public ActionResult Inbox()
         {
-            var messagelist = mm.GetListInbox();
+            string mail= (string)Session["WriterEmail"];
+            var messagelist = mm.GetListInbox(mail);
             return View(messagelist);
         }
 
         public ActionResult Sendbox()
         {
-            var messagelist = mm.GetListSendbox();
+
+            string mail = (string)Session["WriterEmail"];
+            var messagelist = mm.GetListSendbox(mail);
             return View(messagelist);
         }
 
@@ -62,6 +65,7 @@ namespace YouTubeMvc.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message p, string button)
         {
+            string mail = (string)Session["WriterEmail"];
             ValidationResult results = new ValidationResult();
             if (button == "draft")
             {
@@ -70,7 +74,7 @@ namespace YouTubeMvc.Controllers
                 if (results.IsValid)
                 {
                     p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                    p.SenderMail = "muslum@mail.com";
+                    p.SenderMail =mail;
                     p.isDraft = true;
                     mm.MessageAdd(p);
                     return RedirectToAction("Draft");
@@ -89,7 +93,7 @@ namespace YouTubeMvc.Controllers
                 if (results.IsValid)
                 {
                     p.MessageDate = DateTime.Now;
-                    p.SenderMail = "muslum@mail.com";
+                    p.SenderMail = mail;
                     p.isDraft = false;
                     mm.MessageAdd(p);
                     return RedirectToAction("SendBox");
@@ -107,17 +111,18 @@ namespace YouTubeMvc.Controllers
 
         public PartialViewResult MessageListMenu()
         {
+            string mail = (string)Session["WriterEmail"];
             Context _Context = new Context();
             string topContact = _Context.Contacts.Count().ToString();
             ViewBag.TopContact = topContact;
 
-            string topMessage = _Context.Messages.Count(x => x.ReceiverMail == "muslum@mail.com").ToString();
+            string topMessage = _Context.Messages.Count(x => x.ReceiverMail == mail).ToString();
             ViewBag.TopMessage = topMessage;
 
-            string receiverMail = _Context.Messages.Count(x => x.ReceiverMail == "muslum@mail.com" && x.isRead == false).ToString();
+            string receiverMail = _Context.Messages.Count(x => x.ReceiverMail == mail && x.isRead == false).ToString();
             ViewBag.receiverMail = receiverMail;
 
-            string senderMail = _Context.Messages.Count(x => x.SenderMail == "muslum@mail.com" && x.isRead == false).ToString();
+            string senderMail = _Context.Messages.Count(x => x.SenderMail == mail && x.isRead == false).ToString();
             ViewBag.senderMail = senderMail;
 
             string contact = _Context.Contacts.Count(x => x.IsRead == false).ToString();

@@ -16,15 +16,15 @@ namespace YouTubeMvc.Controllers
         readonly private MessageManager mm = new MessageManager(new EfMessageDal());
         readonly private MessageValidator messagevalidator = new MessageValidator();
         [Authorize]
-        public ActionResult Inbox()
+        public ActionResult Inbox(string p)
         {
-            var messagelist = mm.GetListInbox();
+            var messagelist = mm.GetListInbox(p);
             return View(messagelist);
         }
 
-        public ActionResult Sendbox()
+        public ActionResult Sendbox(string p)
         {
-            var messagelist = mm.GetListSendbox();
+            var messagelist = mm.GetListSendbox(p);
             return View(messagelist);
         }
 
@@ -104,9 +104,9 @@ namespace YouTubeMvc.Controllers
             return View();
         }
 
-        public ActionResult Draft()
+        public ActionResult Draft(string mail)
         {
-            var sendList = mm.GetListSendbox();
+            var sendList = mm.GetListSendbox(mail);
             var draftList = sendList.FindAll(x => x.isDraft == true);
             return View(draftList);
         }
