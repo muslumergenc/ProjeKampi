@@ -80,9 +80,11 @@
     <Compile Include="Concrete\Heading.cs" />
     <Compile Include="Concrete\ImageFile.cs" />
     <Compile Include="Concrete\Message.cs" />
+    <Compile Include="Concrete\Role.cs" />
     <Compile Include="Concrete\Skills.cs" />
     <Compile Include="Concrete\Writer.cs" />
     <Compile Include="Dtos\LoginDto.cs" />
+    <Compile Include="Dtos\WriterDto.cs" />
     <Compile Include="Dtos\WriterEditDto.cs" />
     <Compile Include="Dtos\WriterLoginDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

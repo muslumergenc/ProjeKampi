@@ -11,20 +11,23 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class MessageController : Controller
     {
         readonly private MessageManager mm = new MessageManager(new EfMessageDal());
         readonly private MessageValidator messagevalidator = new MessageValidator();
-        [Authorize]
-        public ActionResult Inbox(string p)
+    
+        public ActionResult Inbox()
         {
-            var messagelist = mm.GetListInbox(p);
+            string mail = Session["AdminUserName"].ToString();
+            var messagelist = mm.GetListInbox(mail);
             return View(messagelist);
         }
 
-        public ActionResult Sendbox(string p)
+        public ActionResult Sendbox()
         {
-            var messagelist = mm.GetListSendbox(p);
+            string mail = Session["AdminUserName"].ToString();
+            var messagelist = mm.GetListSendbox(mail);
             return View(messagelist);
         }
 
@@ -61,6 +64,7 @@ namespace YouTubeMvc.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message p, string button)
         {
+            string mail = Session["AdminUserName"].ToString();
             ValidationResult results = new ValidationResult();
             if (button == "draft")
             {
@@ -69,7 +73,7 @@ namespace YouTubeMvc.Controllers
                 if (results.IsValid)
                 {
                     p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                    p.SenderMail = "admin@mail.com";
+                    p.SenderMail = mail;
                     p.isDraft = true;
                     mm.MessageAdd(p);
                     return RedirectToAction("Draft");
@@ -88,7 +92,7 @@ namespace YouTubeMvc.Controllers
                 if (results.IsValid)
                 {
                     p.MessageDate = DateTime.Now;
-                    p.SenderMail = "admin@mail.com";
+                    p.SenderMail = mail;
                     p.isDraft = false;
                     mm.MessageAdd(p);
                     return RedirectToAction("SendBox");
@@ -104,17 +108,34 @@ namespace YouTubeMvc.Controllers
             return View();
         }
 
-        public ActionResult Draft(string mail)
+        public ActionResult Draft()
         {
-            var sendList = mm.GetListSendbox(mail);
-            var draftList = sendList.FindAll(x => x.isDraft == true);
-            return View(draftList);
+            string mail = Session["AdminUserName"].ToString();
+            var draftlist = mm.GetDraft(mail);
+            return View(draftlist);
         }
 
         public ActionResult GetDraftMessageDetails(int id)
         {
             var Values = mm.GetById(id);
             return View(Values);
+        }
+
+        public ActionResult Delete(List<int> ids)
+        {
+            foreach (var id in ids)
+            {
+                if (id == 0)
+                {
+                    return RedirectToAction("Inbox");
+                }
+                else
+                {
+                    Message message = mm.GetById(id);
+                    mm.MessageDelete(message);
+                }
+            }
+            return RedirectToAction("Inbox");
         }
     }
 }

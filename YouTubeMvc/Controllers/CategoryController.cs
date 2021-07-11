@@ -11,10 +11,11 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize(Roles ="A")]
     public class CategoryController : Controller
     {
         readonly private CategoryManager cm = new CategoryManager(new EfCategoryDal());
-        [Authorize]
+   
         public ActionResult Index()
         {
             return View();

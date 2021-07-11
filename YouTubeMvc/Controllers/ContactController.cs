@@ -10,14 +10,12 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
-        // GET: Contact
         private Context _Context = new Context();
         readonly private ContactManager cm = new ContactManager(new EfContactDal());
-        ContactValidator cv = new ContactValidator();
-
-        [Authorize]
+        private ContactValidator cv = new ContactValidator();
         public ActionResult Index()
         {
             var contactvalues = cm.GetList();
@@ -29,36 +27,37 @@ namespace YouTubeMvc.Controllers
             var contactvalues = cm.GetById(id);
             if (contactvalues != null)
             {
-                contactvalues.ContactID= cm.GetById(id).ContactID;
-                contactvalues.ContactDate= cm.GetById(id).ContactDate;
+                contactvalues.ContactID = cm.GetById(id).ContactID;
+                contactvalues.ContactDate = cm.GetById(id).ContactDate;
                 contactvalues.Message = cm.GetById(id).Message;
-                contactvalues.Subject= cm.GetById(id).Subject;
+                contactvalues.Subject = cm.GetById(id).Subject;
                 contactvalues.UserMail = cm.GetById(id).UserMail;
-                contactvalues.UserName= cm.GetById(id).UserName;
+                contactvalues.UserName = cm.GetById(id).UserName;
                 contactvalues.IsRead = true;
                 cm.ContactUpdate(contactvalues);
             }
             return View(contactvalues);
         }
-
         public PartialViewResult ContactMenuPartial()
         {
-            string topContact = _Context.Contacts.Count().ToString();
+            string mail = Session["AdminUserName"].ToString();
+            Context _Context = new Context();
+            string topContact = _Context.Contacts.Where(x => x.UserMail == mail).Count().ToString();
             ViewBag.TopContact = topContact;
 
-            string topMessage = _Context.Messages.Count().ToString();
+            string topMessage = _Context.Messages.Count(x => x.ReceiverMail == mail).ToString();
             ViewBag.TopMessage = topMessage;
 
-            string receiverMail = _Context.Messages.Count(x => x.isRead==false).ToString();
+            string receiverMail = _Context.Messages.Count(x => x.ReceiverMail == mail && x.isRead == false).ToString();
             ViewBag.receiverMail = receiverMail;
 
-            string senderMail = _Context.Messages.Count(x =>x.isRead == false).ToString();
+            string senderMail = _Context.Messages.Count(x => x.SenderMail == mail && x.isDraft == false).ToString();
             ViewBag.senderMail = senderMail;
 
-            string contact = _Context.Contacts.Count(x=> x.IsRead==false).ToString();
+            string contact = _Context.Contacts.Count(x => x.UserMail == mail && x.IsRead == false).ToString();
             ViewBag.contact = contact;
 
-            string draft = _Context.Messages.Count(x => x.isDraft == true).ToString();
+            string draft = _Context.Messages.Count(x => x.SenderMail == mail && x.isDraft == true).ToString();
             ViewBag.draft = draft;
 
             return PartialView();

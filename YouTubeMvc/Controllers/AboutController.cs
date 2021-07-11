@@ -12,10 +12,10 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize(Roles ="A")]
     public class AboutController : Controller
     {
         readonly private AboutManager abm = new AboutManager(new EfAboutDal());
-        [Authorize]
         public ActionResult Index()
         {
             var aboutvalues = abm.GetList();
@@ -42,8 +42,8 @@ namespace YouTubeMvc.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
+                return PartialView("AboutPartial");
             }
-            return PartialView("AboutPartial");
         }
         [HttpGet]
         public ActionResult EditAbout(int id)

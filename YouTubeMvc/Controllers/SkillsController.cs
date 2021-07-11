@@ -13,11 +13,11 @@ using EntityLayer.Concrete;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class SkillsController : Controller
     {
+      
         readonly private SkillsManager sm = new SkillsManager(new EfSkillDal());
-        // GET: Skills
-        [Authorize]
         public ActionResult Index()
         {
             return View(sm.GetList());
@@ -28,7 +28,6 @@ namespace YouTubeMvc.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult Create(Skills skills)
         {
             if (ModelState.IsValid)
@@ -78,7 +77,7 @@ namespace YouTubeMvc.Controllers
             }
 
         }
-
+        [AllowAnonymous]
         public ActionResult Yetenekler()
         {
             return View(sm.GetList());

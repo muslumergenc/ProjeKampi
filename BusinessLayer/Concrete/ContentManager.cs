@@ -38,7 +38,11 @@ namespace BusinessLayer.Concrete
             return _contentDAL.Get(x => x.ContentID == id);
         }
 
-        public List<Content> GetList()
+        public List<Content> GetList(string p)
+        {
+            return _contentDAL.List(x=> x.ContentValue.Contains(p));
+        }
+        public List<Content> GetAllList()
         {
             return _contentDAL.List();
         }

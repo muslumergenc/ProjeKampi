@@ -19,7 +19,10 @@
                         <div>
                             <i class="fas fa-comment bg-yellow"></i>
                             <div class="timeline-item">
-                                <h3 class="timeline-header"><a href="#">@item.Heading.HeadingName</a></h3>
+                                <h3 class="timeline-header">
+                                <a>@item.Heading.HeadingName</a> &nbsp;&nbsp;
+                                <a href="/WriterPanelContent/ContentDelete/@item.ContentID" class="btn btn-warning btn-sm" onclick="return confirm('Eminmisiniz ?')">Yorumu Kaldır <i class="fa fa-burn"></i> </a>
+                                </h3>
                                 <div class="timeline-body">
                                     @item.ContentValue
                                 </div>

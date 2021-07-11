@@ -1,5 +1,4 @@
-﻿
-@model EntityLayer.Concrete.About
+﻿@model EntityLayer.Concrete.About
 <button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
     Yeni Hakkımızda Yazı Girişi
 </button>
@@ -14,17 +13,14 @@
         <div class="modal-body">
             @Html.Label("Başlık")
             @Html.TextBoxFor(x => x.AboutDetails1, new { @class = "form-control" })
-          
             @Html.ValidationMessageFor(x => x.AboutDetails1)
             <br />
             @Html.Label("Açıklama")
             @Html.TextBoxFor(x => x.AboutDetails2, new { @class = "form-control" })
-         
             @Html.ValidationMessageFor(x => x.AboutDetails2)
             <br />
             @Html.Label("Görsel-1")
             @Html.TextBoxFor(x => x.AboutImage1, new { @class = "form-control" })
-       
             @Html.ValidationMessageFor(x => x.AboutImage1)
             <br />
             @Html.Label("Görsel-2")

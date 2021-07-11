@@ -15,9 +15,8 @@ namespace YouTubeMvc.Controllers
         readonly private ContentManager cm = new ContentManager(new EfContentDal());
         public ActionResult Headings()
         {
-            var headingList = hm.GetList();
+            var headingList = hm.GetList().Where(x=> x.HeadingStatus==true).ToList();
             return View(headingList);
-           
         }
         public PartialViewResult Index(int id=0)
         {

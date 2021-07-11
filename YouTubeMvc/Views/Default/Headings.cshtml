@@ -34,10 +34,27 @@
                         {
                             <li class="nav-item">
                                 <a href="/Default/Headings/@item.HeadingID" class="nav-link">
-                                    <p>
-                                        @item.HeadingName (0)
-                                    </p>
+                                    <p>@item.HeadingName</p>
                                 </a>
+                            </li>
+                        }
+                        <li class="nav-item alert-link alert-secondary">
+                            <a href="/" class="nav-link">Siteye Dön</a>
+                        </li>
+                        @if (Session["WriterEmail"] != null)
+                        {
+                            <li class="nav-item alert-link alert-info">
+                                <a href="~/WriterPanel/index" class="nav-link">Profil Sayfası</a>
+                            </li>
+                            <br />
+                            <li class="nav-item alert-link alert-danger">
+                                <a href="~/Login/WriterLogOut" class="nav-link">Çıkış Yap</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item alert-link alert-success">
+                                <a href="~/Login/WriterLogin" class="nav-link">Giriş Yap</a>
                             </li>
                         }
                     </ul>
@@ -46,7 +63,7 @@
         </aside>
         <div class="content-wrapper">
             <div class="content">
-                @Html.Action("Index","Default")
+                @Html.Action("Index", "Default")
             </div>
         </div>
         <footer class="main-footer">
@@ -63,14 +80,16 @@
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
     <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
     <script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
-    <script>$(function () {
+    <script>
+    $(function () {
             $('#compose-textarea').summernote()
         })</script>
     <script src="~/AdminLTE-3.0.4/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
     <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
     <script src="~/AdminLTE-3.0.4/plugins/filterizr/jquery.filterizr.min.js"></script>
-    <script>$(function () {
+    <script>
+    $(function () {
             $(document).on('click', '[data-toggle="lightbox"]', function (event) {
                 event.preventDefault();
                 $(this).ekkoLightbox({

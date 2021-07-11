@@ -1,20 +1,36 @@
 ﻿@model EntityLayer.Concrete.Category
 
 @{ ViewBag.Title = "AddCategory";
-                Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
-
-<h1>Yeni Kategori Ekleme Sayfası</h1>
+    Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <br />
 @using (Html.BeginForm("AddCategory", "AdminCategory", FormMethod.Post))
 {
 <div class="form-group">
     @Html.Label("Kategori Adı")
-    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.CategoryName)
+    @Html.TextBoxFor(c => c.CategoryName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.CategoryName)
     <br /> <br />
-    @Html.Label("Açıklamayı Yazınız")
-    @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.CategoryDescription)
+    @Html.Label("Açıklamayı yazınız")
+    @Html.TextAreaFor(c => c.CategoryDescription, new { @class = "form-control" })
+    @Html.ValidationMessageFor(c => c.CategoryDescription)
     <br /> <br />
-    <button class="btn btn-success">Kaydet</button>
-</div>}
+    <button class="btn btn-info" id="btnadd">Kategoriyi Ekle</button>
+</div>
+                <script>
+                    $('#btnadd').click(function () {
+                        swal({
+                            title: "Başarılı!",
+                            text: "Kategori başarılı bir şekilde eklendi.",
+                            buttons: false,
+                            icon: "success",
+                            timer: 6000
+                        }).then(function () {
+                            window.location.reload(true);
+                            tr.hide();
+                        });
+                    });
+                </script>
+}
+

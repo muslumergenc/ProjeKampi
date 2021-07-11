@@ -7,36 +7,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 namespace YouTubeMvc.Controllers
 {
     [AllowAnonymous]
     public class RegisterController : Controller
     {
         IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
-
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Index(LoginDto loginDto)
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(WriterDto writerDto)
         {
-            authService.Register(loginDto.AdminUserName, loginDto.AdminPassword);
-            return RedirectToAction("MyContent", "WriterPanelContent");
-        }
-
-        [HttpGet]
-
-        public ActionResult WriterRegister()
-        {
+            if (writerDto!=null)
+            {
+                authService.RegisterWriter(writerDto.WriterEmail, writerDto.WriterPassword, writerDto.WriterName, writerDto.WriterSurname);
+                TempData["Writer"] = writerDto.WriterEmail;
+                return View(writerDto);
+            }
             return View();
-        }
-        [HttpPost]
-        public ActionResult WriterRegister(WriterLoginDto writerLoginDto)
-        {
-            authService.WriterRegister(writerLoginDto.WriterEmail, writerLoginDto.WriterPassword);
-            return RedirectToAction("MyContent", "WriterPanelContent");
+           
         }
     }
 }

@@ -14,15 +14,17 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class WriterController : Controller
     {
         readonly private WriterManager wm = new WriterManager(new EfWriterDal());
+        readonly private HeadingManager hm = new HeadingManager(new EfHeadingDal());
         readonly WriterValidator writervalidator = new WriterValidator();
-        [Authorize]
+
         public ActionResult Index()
         {
             var WriterValues = wm.GetList();
-            if (WriterValues==null)
+            if (WriterValues == null)
             {
                 return View();
             }
@@ -30,7 +32,7 @@ namespace YouTubeMvc.Controllers
             {
                 return View(WriterValues);
             }
-           
+
         }
 
         [HttpGet]
@@ -42,34 +44,10 @@ namespace YouTubeMvc.Controllers
         public ActionResult AddWriter(WriterEditDto editDto)
         {
             IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
-            authService.WriterAdd(editDto);
-            return View("Index");
-        }
-
-        [HttpGet]
-        public ActionResult EditWriter(int id)
-        {
-            WriterEditDto editDto = new WriterEditDto
-            {
-                WriterID = id,
-                WriterEmail=wm.GetById(id).WriterEmail,
-                WriterName= wm.GetById(id).WriterName,
-                WriterSurname= wm.GetById(id).WriterSurname,
-                WriterAbout= wm.GetById(id).WriterAbout,
-                WriterImage= wm.GetById(id).WriterImage,
-                WriterTitle= wm.GetById(id).WriterTitle,
-                WriterStatus=wm.GetById(id).WriterStatus
-            };
-            return View(editDto);
-        }
-        [HttpPost]
-        public ActionResult EditWriter(WriterEditDto writerEditDto)
-        {
-            IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
-            ValidationResult results = writervalidator.Validate(writerEditDto);
+            ValidationResult results = writervalidator.Validate(editDto);
             if (results.IsValid)
             {
-                authService.WriterEdit(writerEditDto);
+                authService.WriterAdd(editDto);
                 return RedirectToAction("Index");
             }
             else
@@ -80,6 +58,63 @@ namespace YouTubeMvc.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult EditWriter(int id)
+        {
+            WriterEditDto editDto = new WriterEditDto
+            {
+                WriterID = id,
+                WriterEmail = wm.GetById(id).WriterEmail,
+                WriterName = wm.GetById(id).WriterName,
+                WriterSurname = wm.GetById(id).WriterSurname,
+                WriterAbout = wm.GetById(id).WriterAbout,
+                WriterImage = wm.GetById(id).WriterImage,
+                WriterTitle = wm.GetById(id).WriterTitle,
+                WriterStatus = wm.GetById(id).WriterStatus,
+                 WriterPassword=wm.GetById(id).WriterPasswordHash.ToString()
+            };
+            return View(editDto);
+        }
+        [HttpPost]
+        public ActionResult EditWriter(WriterEditDto EditDto)
+        {
+            IAuthService authService = new AuthManager(new AdminManager(new EfAdminDal()), new WriterManager(new EfWriterDal()));
+            ValidationResult results = writervalidator.Validate(EditDto);
+            if (results.IsValid)
+            {
+                authService.WriterEdit(EditDto);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
+
+        public ActionResult WriterHeading(int id) 
+        {
+            var headingValues = hm.GetListByWriter(id);
+            return View(headingValues);
+        }
+        public ActionResult WriterStatus(int id) 
+        {
+            var result = wm.GetById(id);
+            if (result.WriterStatus== true)
+            {
+                result.WriterStatus = false;
+            }
+            else
+            {
+                result.WriterStatus = true;
+            }
+            wm.WriterUpdate(result);
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,0 +1,20 @@
+﻿@model EntityLayer.Concrete.ImageFile
+@{
+    ViewBag.Title = "ImageAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Foto Ekle</h2>
+@using (Html.BeginForm("ImageAdd", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.Label("Açıklama Yazınız")
+        @Html.TextBoxFor(x => x.ImageName, new { @class = "form-control" })
+        <br />
+        @Html.Label("Foto")
+        <br />
+        <input type="file" name="ImagePath" />
+        <br /><br />
+        <button class="btn btn-info">Fotoğraf Ekle</button>
+    </div>
+} 

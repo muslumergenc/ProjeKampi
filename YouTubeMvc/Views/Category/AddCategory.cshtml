@@ -6,6 +6,7 @@
 
 <h1>Yeni Kategori Ekleme Sayfası</h1>
 <br />
+
 @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
 {
 <div class="form-group">
@@ -17,5 +18,11 @@
     @Html.TextBoxFor(x => x.CategoryDescription)
     @Html.ValidationMessageFor(x => x.CategoryDescription)
     <br /> <br />
-    <button>Kaydet</button>
-</div>}
+    <button class="btn btn-info" id="ekle">Kaydet</button>
+</div>
+<script>
+    $('#ekle').click(function () {
+        swal("Başarılı!","Kategori Başarılı şekilde eklendi","success");
+    });
+</script>
+}

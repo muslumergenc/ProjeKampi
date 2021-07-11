@@ -9,19 +9,29 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class HeadingController : Controller
     {
         // GET: Heading
         readonly private HeadingManager hm = new HeadingManager(new EfHeadingDal());
         readonly private CategoryManager cm = new CategoryManager(new EfCategoryDal());
         WriterManager wm = new WriterManager(new EfWriterDal());
-        [Authorize]
+
         public ActionResult Index()
         {
-            var headingvalues = hm.GetList().Where(x=> x.HeadingStatus==true).ToList();
+            var headingvalues = hm.GetList().ToList();
             return View(headingvalues);
         }
-
+        public ActionResult HeadingList(int id)
+        {
+            List<Heading> headingvalues = hm.GetListByCategory(id);
+            return View(headingvalues);
+        }
+        public ActionResult HeadingReport()
+        {
+            var headingvalues = hm.GetList().ToList();
+            return View(headingvalues);
+        }
         [HttpGet]
         public ActionResult AddHeading()
         {
@@ -60,6 +70,13 @@ namespace YouTubeMvc.Controllers
                                                       Text = x.CategoryName,
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
+            List<SelectListItem> valuewriter = (from x in wm.GetList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.WriterName + " " + x.WriterSurname,
+                                                    Value = x.WriterID.ToString()
+                                                }).ToList();
+            ViewBag.vlw = valuewriter;
             ViewBag.vlc = valuecategory;
             var headingvalue = hm.GetById(id);
             return View(headingvalue);
@@ -75,8 +92,15 @@ namespace YouTubeMvc.Controllers
         public ActionResult DeleteHeading(int id)
         {
             var headingvalue = hm.GetById(id);
-            headingvalue.HeadingStatus = false;
-            hm.HeadingDelete(headingvalue);
+            if (headingvalue.HeadingStatus==true)
+            {
+                headingvalue.HeadingStatus = false;
+            }
+            else
+            {
+                headingvalue.HeadingStatus = true;
+            }
+            hm.HeadingUpdate(headingvalue);
             return RedirectToAction("Index");
         }
     }

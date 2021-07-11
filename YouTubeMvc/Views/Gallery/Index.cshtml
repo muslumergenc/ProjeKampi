@@ -27,16 +27,16 @@
                         <div class="row">
                             @foreach (var item in Model)
                             {
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-lg-2">
                     <a href="@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
-                        <img src="@item.ImagePath" class="img-fluid mb-2" alt="@item.ImageName" />
+                        <img src="@item.ImagePath" class="img-fluid mb-2" style="height:180px;" alt="@item.ImageName" />
                     </a>
                 </div>}
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <button href="#" class="btn btn-info">Foto Ekle+</button>
+                    <a href="/gallery/imageadd" class="btn btn-info">Foto Ekle+</a>
                 </div>
             </div>
         </div>

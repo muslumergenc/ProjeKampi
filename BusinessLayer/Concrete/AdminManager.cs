@@ -35,7 +35,7 @@ namespace BusinessLayer.Concrete
 
         public Admin GetById(int id)
         {
-            return _adminDal.Get(x => x.AdminID == id);
+            return _adminDal.Get(x => x.AdminId == id);
         }
 
         public List<Admin> GetList()

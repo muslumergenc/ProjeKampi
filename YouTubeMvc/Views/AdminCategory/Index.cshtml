@@ -2,8 +2,8 @@
 @model List<Category>
 
 @{ ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
-
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
 <br />
 <table class="table table-bordered">
     <tr>
@@ -20,7 +20,8 @@
     <td>@item.CategoryName</td>
     <td><a href="/AdminCategory/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
     <td><a href="/AdminCategory/EditCategory/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
-    <td><a href="" class="btn btn-primary">Başlıklar</a></td>
-</tr>}
+    <td><a href="/Heading/HeadingList/@item.CategoryID" class="btn btn-primary">Başlıklar</a></td>
+</tr>
+}
 </table>
 <a class="btn btn-info" href="/AdminCategory/AddCategory">Yeni Kategori</a>

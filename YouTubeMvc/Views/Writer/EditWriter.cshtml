@@ -7,8 +7,7 @@
 @using (Html.BeginForm("EditWriter", "Writer", FormMethod.Post))
 {
 <div class="form-group">
-    @Html.Label("Yazar Id")
-    @Html.TextBoxFor(x => x.WriterID, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.WriterID, new { @class = "form-control", style = "display:none;" })
     <br />
     @Html.Label("Yazar Adı")
     @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
@@ -22,12 +21,8 @@
     @Html.TextBoxFor(x => x.WriterEmail, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.WriterEmail, null, new { @class = "text-danger" })
     <br />
-    @*@Html.Label("Yazar Şifre")
-        @Html.TextBoxFor(x => x.WriterPasswordHash, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.WriterPasswordHash, null, new { @class = "text-danger" })
-        <br />*@
     @Html.Label("Yazar Şifre")
-    @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control", type = "password" })
     @Html.ValidationMessageFor(x => x.WriterPassword, null, new { @class = "text-danger" })
     <br />
     @Html.Label("Yazar Fotoğraf")
@@ -45,7 +40,7 @@
     @Html.Label("Durum")
     @Html.CheckBoxFor(x => x.WriterStatus, new { @class = "form-control" })
     <br />
-    <button class="btn btn-success">Güncelle</button>
+    <button class=" btn btn-success">Güncelle</button>
 </div>}
 
 

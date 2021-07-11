@@ -22,6 +22,10 @@ namespace BusinessLayer.Concrete
         {
             return _messageDAL.Get(x => x.MessageID == id);
         }
+        public List<Message> GetDraft(string mail) 
+        {
+            return _messageDAL.List().Where(x=> x.SenderMail==mail && x.isDraft == true).ToList();
+        }
 
         public List<Message> GetListInbox(string mail)
         {
@@ -30,7 +34,7 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListSendbox(string mail)
         {
-            return _messageDAL.List(x => x.SenderMail == mail);
+            return _messageDAL.List(x => x.SenderMail == mail && x.isDraft==false);
         }
 
         public void MessageAdd(Message message)

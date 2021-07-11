@@ -8,18 +8,30 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class ContentController : Controller
     {
-        // GET: Content
-
         readonly private ContentManager cm = new ContentManager(new EfContentDal());
-        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult ContentByHeading(int id)
+        public ActionResult GetAllContent(string p)
+        {
+            var values = cm.GetList(p);
+            if (values.Count == 0)
+            {
+                values = cm.GetAllList();
+                return View(values);
+            }
+            return View(values);
+        }
+        public ActionResult ContentByHeading(int id = 0)
+        {
+            var contentvalues = cm.GetListByHeadingID(id);
+            return View(contentvalues);
+        }
+        public ActionResult ContentByHeadingWriter(int id=0)
         {
             var contentvalues = cm.GetListByHeadingID(id);
             return View(contentvalues);

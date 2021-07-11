@@ -60,6 +60,7 @@
     <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IRoleDal.cs" />
     <Compile Include="Abstract\ISkillDal.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
@@ -72,11 +73,20 @@
     <Compile Include="EntityFramework\EfImageFileDal.cs" />
     <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfRoleDal.cs" />
     <Compile Include="EntityFramework\EfSkillDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202106181440298_LastDbEdit.cs" />
     <Compile Include="Migrations\202106181440298_LastDbEdit.designer.cs">
       <DependentUpon>202106181440298_LastDbEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107051943469_add_RoleandStatus.cs" />
+    <Compile Include="Migrations\202107051943469_add_RoleandStatus.designer.cs">
+      <DependentUpon>202107051943469_add_RoleandStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107052050489_roleUpdateMig.cs" />
+    <Compile Include="Migrations\202107052050489_roleUpdateMig.designer.cs">
+      <DependentUpon>202107052050489_roleUpdateMig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,6 +104,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106181440298_LastDbEdit.resx">
       <DependentUpon>202106181440298_LastDbEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107051943469_add_RoleandStatus.resx">
+      <DependentUpon>202107051943469_add_RoleandStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107052050489_roleUpdateMig.resx">
+      <DependentUpon>202107052050489_roleUpdateMig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,18 +14,33 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class WriterPanelController : Controller
     {
         readonly private HeadingManager hm = new HeadingManager(new EfHeadingDal());
         readonly private CategoryManager cm = new CategoryManager(new EfCategoryDal());
         readonly private WriterManager wm = new WriterManager(new EfWriterDal());
         readonly WriterValidator writervalidator = new WriterValidator();
+        public ActionResult Index()
+        {
+            if (Session["WriterEmail"] != null)
+            {
+                string email = Session["WriterEmail"].ToString();
+                string name = wm.GetByMail(email).WriterName.ToString();
+                ViewBag.Name = name;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("WriterLogOut", "Login");
+            }
+        }
         [HttpGet]
         public ActionResult WriterProfile(int id=0)
         {
-            string mail = (string)Session["WriterEmail"];
-            id = wm.GetList().Where(x => x.WriterEmail == mail).Select(x => x.WriterID).FirstOrDefault();
-            WriterEditDto writerDto = new WriterEditDto
+            string email = Session["WriterEmail"].ToString();
+            id = wm.GetByMail(email).WriterID;
+            WriterEditDto editDto = new WriterEditDto
             {
                 WriterID = id,
                 WriterEmail = wm.GetById(id).WriterEmail,
@@ -34,9 +49,10 @@ namespace YouTubeMvc.Controllers
                 WriterAbout = wm.GetById(id).WriterAbout,
                 WriterImage = wm.GetById(id).WriterImage,
                 WriterTitle = wm.GetById(id).WriterTitle,
-                WriterStatus = wm.GetById(id).WriterStatus
+                WriterStatus = wm.GetById(id).WriterStatus,
+                WriterPassword = wm.GetById(id).WriterPasswordHash.ToString()
             };
-            return View(writerDto);
+            return View(editDto);
         }
         [HttpPost]
         public ActionResult WriterProfile(WriterEditDto writerEditDto)
@@ -46,7 +62,7 @@ namespace YouTubeMvc.Controllers
             if (results.IsValid)
             {
                 authService.WriterEdit(writerEditDto);
-                return RedirectToAction("AllHeading","WriterPanel");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -57,6 +73,8 @@ namespace YouTubeMvc.Controllers
             }
             return View();
         }
+
+
         public ActionResult MyHeading(string p)
         {
             p = (string)Session["WriterEMail"];
@@ -108,21 +126,23 @@ namespace YouTubeMvc.Controllers
         }
         public ActionResult DeleteHeading(int id)
         {
+            //if (result.HeadingStatus == true)
+            //{
+            //    result.HeadingStatus = false;
+            //}
+            //else
+            //{
+            //    result.HeadingStatus = true;
+            //}
+            //hm.HeadingDelete(result);
             var result = hm.GetById(id);
-            if (result.HeadingStatus == true)
-            {
-                result.HeadingStatus = false;
-            }
-            else
-            {
-                result.HeadingStatus = true;
-            }
             hm.HeadingDelete(result);
             return RedirectToAction("MyHeading");
+
         }
-        public ActionResult AllHeading(int p=1) 
+        public ActionResult AllHeading(int p = 1)
         {
-            var headings = hm.GetList().ToPagedList(p,3);
+            var headings = hm.GetList().ToPagedList(p,6);
             return View(headings);
         }
     }

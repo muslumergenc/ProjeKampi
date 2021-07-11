@@ -26,25 +26,26 @@
             <div class="sidebar">
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-                        @if (User.IsInRole("B"))
-                        {
-            <li class="nav-item has-treeview">
-                <a href="/AdminCategory/Index" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Kategoriler
-                    </p>
-                </a>
-            </li>
-}
-
+                        <li class="nav-item has-treeview">
+                            <a href="/AdminCategory/Index" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Kategoriler
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/Heading/Index" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Başlıklar
                                 </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Content/getallcontent" class="nav-link">
+                                <i class="nav-icon fas fa-book-reader"></i>
+                                <p>Yazılar</p>
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
@@ -65,15 +66,15 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                    <a href="/chart/index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Grafik 1</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/charts/flot.html" class="nav-link">
+                                    <a href="/chart/DynamicCategory1" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Grafik 2</p>
+                                        <p>Dynamic Jpg Chart</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -93,6 +94,14 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
+                            <a href="/heading/headingreport/" target="_blank" class="nav-link">
+                                <i class="nav-icon fas fa-bars"></i>
+                                <p>
+                                    Raporlar
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
                             <a href="/Contact/Index/" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
@@ -101,13 +110,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/authorization/index" class="nav-link">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>
                                     Yetkilendirmeler
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="/Gallery/Index/" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
@@ -116,8 +126,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/Chart/SweetAlert" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>Sweet Alert</p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview">
-                            <a href="/ErrorPage/Page404/" class="nav-link">
+                            <a href="~/ErrorPage/Page404/" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
                                     Hata Sayfaları
@@ -133,13 +149,20 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="~/Skills/Yetenekler" class="nav-link" target="_blank">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Yeteneklerim Sayfası
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="~/Home/HomePage" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Siteye Git
                                 </p>
                             </a>
-
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="/login/logout" class="nav-link">

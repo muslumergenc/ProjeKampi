@@ -13,7 +13,6 @@ namespace BusinessLayer.ValidationRules_Fluent
         public AdminValidator() 
         {
             RuleFor(x => x.AdminUserName).NotEmpty().WithMessage("Kullanıcı Adı Boş Geçilemez");
-            RuleFor(x => x.AdminRole).NotEmpty().WithMessage("Rol Seçmek Zorundasınız.");
         }
     }
 }

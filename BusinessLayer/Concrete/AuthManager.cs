@@ -38,16 +38,17 @@ namespace BusinessLayer.Concrete
             }
         }
 
-        public void Register(string adminMail, string password)
+        public void Register(string adminMail, string password, string userName, int roleId)
         {
             byte[] userNameHash, passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(adminMail, password, out userNameHash, out passwordHash, out passwordSalt);
             var admin = new Admin
             {
+                AdminName = userName,
                 AdminUserName = userNameHash,
                 AdminPasswordHash = passwordHash,
                 AdminPasswordSalt = passwordSalt,
-                AdminRole = "A"
+                RoleId = roleId
             };
             _adminService.AdminAddBL(admin);
         }
@@ -80,22 +81,23 @@ namespace BusinessLayer.Concrete
             };
             _writerService.WriterAdd(writer);
         }
+
         public void WriterEdit(WriterEditDto writerEditDto)
         {
             byte[] passwordHash, passwordSalt;
             HashingHelper.WriterCreatePasswordHash(writerEditDto.WriterPassword, out passwordHash, out passwordSalt);
-            var writer = new Writer
+            Writer writer = new Writer
             {
-                WriterID=writerEditDto.WriterID,
+                WriterID = writerEditDto.WriterID,
                 WriterEmail = writerEditDto.WriterEmail,
-                WriterAbout=writerEditDto.WriterAbout,
+                WriterAbout = writerEditDto.WriterAbout,
                 WriterPasswordHash = passwordHash,
                 WriterPasswordSalt = passwordSalt,
-                WriterImage=writerEditDto.WriterImage,
-                WriterName=writerEditDto.WriterName,
-                WriterSurname=writerEditDto.WriterSurname,
-                WriterTitle= writerEditDto.WriterTitle,
-                WriterStatus=writerEditDto.WriterStatus
+                WriterImage = writerEditDto.WriterImage,
+                WriterName = writerEditDto.WriterName,
+                WriterSurname = writerEditDto.WriterSurname,
+                WriterTitle = writerEditDto.WriterTitle,
+                WriterStatus = writerEditDto.WriterStatus
             };
             _writerService.WriterUpdate(writer);
         }
@@ -111,10 +113,25 @@ namespace BusinessLayer.Concrete
                 WriterEmail = writerEditDto.WriterEmail,
                 WriterPasswordHash = passwordHash,
                 WriterPasswordSalt = passwordSalt,
-                WriterAbout=writerEditDto.WriterAbout,
-                WriterImage= writerEditDto.WriterImage,
-                WriterStatus=false,
-                WriterTitle=writerEditDto.WriterTitle
+                WriterAbout = writerEditDto.WriterAbout,
+                WriterImage = writerEditDto.WriterImage,
+                WriterStatus = false,
+                WriterTitle = writerEditDto.WriterTitle
+            };
+            _writerService.WriterAdd(writer);
+        }
+
+        public void RegisterWriter(string mail, string password, string Name, string surname)
+        {
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.WriterCreatePasswordHash(password, out passwordHash, out passwordSalt);
+            var writer = new Writer
+            {
+                WriterName = Name,
+                WriterSurname = surname,
+                WriterPasswordHash = passwordHash,
+                WriterPasswordSalt = passwordSalt,
+                WriterEmail=mail
             };
             _writerService.WriterAdd(writer);
         }

@@ -23,12 +23,12 @@ namespace YouTubeMvc.Controllers
         readonly private AdminManager adm = new AdminManager(new EfAdminDal());
         readonly private WriterManager wm = new WriterManager(new EfWriterDal());
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Admin()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Index(LoginDto loginDto)
+        public ActionResult Admin(LoginDto loginDto)
         {
             var response = Request["g-recaptcha-response"];
             const string secret = "6Lfw6T8bAAAAAItuIShiVWQ5-4K-WhNS-m51WOtD";
@@ -42,14 +42,16 @@ namespace YouTubeMvc.Controllers
                     bool result = HashingHelper.VerifyAdminHash(loginDto.AdminUserName, loginDto.AdminPassword, item.AdminUserName, item.AdminPasswordHash, item.AdminPasswordSalt);
                     if (result == true)
                     {
-                        FormsAuthentication.SetAuthCookie(loginDto.AdminUserName, false);
-                        Session["AdminUserName"] = loginDto.AdminUserName;
-                        return RedirectToAction("Index", "AdminCategory");
-                    }
-                    else
-                    {
-                        ViewData["ErrorMessage"] = "Kullanıcı adı veya Parola yanlış";
-                        return View();
+                        if (item.AdminStatus==true)
+                        {
+                            FormsAuthentication.SetAuthCookie(loginDto.AdminUserName, false);
+                            Session["AdminUserName"] = loginDto.AdminUserName;
+                            return RedirectToAction("Index", "AdminCategory");
+                        }
+                        else
+                        {
+                            ViewData["ErrorMessage"] = "Bu Hesap Henüz Aktif Değil !";
+                        }
                     }
                 }
                 return View();
@@ -64,7 +66,7 @@ namespace YouTubeMvc.Controllers
         {
             FormsAuthentication.SignOut();
             Session.Abandon();
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Admin", "Login");
         }
         [HttpGet]
         public ActionResult WriterLogin()
@@ -92,7 +94,7 @@ namespace YouTubeMvc.Controllers
                         {
                             FormsAuthentication.SetAuthCookie(writerLoginDto.WriterEmail, false);
                             Session["WriterEmail"] = writerLoginDto.WriterEmail;
-                            return RedirectToAction("MyContent", "WriterPanelContent");
+                            return RedirectToAction("Index", "WriterPanel");
                         }
                         else
                         {

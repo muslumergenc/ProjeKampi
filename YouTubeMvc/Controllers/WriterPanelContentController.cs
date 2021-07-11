@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize]
     public class WriterPanelContentController : Controller
     {
         // GET: WriterPanelContent
@@ -49,6 +50,13 @@ namespace YouTubeMvc.Controllers
             content.ContentStatus = true;
             cm.ContentAddBL(content);
             return RedirectToAction("MyContent");
+        }
+        public ActionResult ContentDelete(int id)
+        {
+            var contentvalues = cm.GetById(id);
+            cm.ContentDelete(contentvalues);
+            return RedirectToAction("MyContent");
+
         }
     }
 }

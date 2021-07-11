@@ -1,42 +1,274 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>MVC PROJE KAMPI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/bootstrap.css">
+    <link href="~/AdminLTE-3.0.4/web/css/simpleLightbox.css" rel='stylesheet' type='text/css' />
+    <link href="~/AdminLTE-3.0.4/web/css/roadmap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/snow.css">
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/aos.css">
+    <link href='~/AdminLTE-3.0.4/web/css/aos-animation.css' rel='stylesheet prefetch' type="text/css" media="all" />
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/fontawesome-all.css">
+    <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,400,400i,500,500i,700,700i,900" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header class="index-banner" id="home">
+        <nav class="main-header d-flex">
+            <div id="brand">
+                <div id="logo">
+                    <a href="#home">
+                        <i class="fas fa-crosshairs"></i>
+                    </a>
+                </div>
+                <div id="word-mark">
+                    <h1>
+                        <a class="scroll" href="#home">Mvc_Kampı</a>
+                    </h1>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <div id="menu">
+                <div id="menu-toggle">
+                    <div id="menu-icon">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <ul class="text-center nav-honey">
+                    <li>
+                        <a class="scroll" href="#home">AnaSayfa</a>
+                    </li>
+                    <li>
+                        <a class="scroll" href="#about">Geliştirme Araçları</a>
+                    </li>
+                    <li>
+                        <a class="scroll" href="#services">Hakkında</a>
+                    </li>
+                    <li>
+                        <a class="scroll" href="#projects">Görseller</a>
+                    </li>
+                    <li>
+                        <a class="scroll" href="#contact">İletişim</a>
+                    </li>
+                    <li>
+                        <a href="/Default/Headings">Sözlük</a>
+                    </li>
+                    <li class="login">
+                        <a class="btn btn-outline-info" href="/Login/WriterLogin">
+                            Giriş Yap
+                        </a>
+                    </li>
                 </ul>
             </div>
+            <div class="clearfix"></div>
+        </nav>
+        <div id="home" class="banner_section">
+            <div class="banner-info text-uppercase">
+                <h6 data-aos="fade-right">Müslüm ERGENÇ</h6>
+                <h5 data-aos="fade-right">Merhaba, sözlüğe hoşgeldiniz</h5>
+                <h3 data-text="MVC PROJE KAMPI">MVC PROJE KAMPI</h3>
+                <div class="ban-buttons mt-3" data-aos="fade-right">
+                    <a class="btn work scroll" href="#projects">Görseller</a>
+                    <a class="btn work scroll active" href="#contact">İletişim</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    </header>
+    @RenderBody()
+    <footer class="footer text-left">
+        <div class="container py-4 py-sm-5">
+            <div class="row py-sm-4 py-3">
+                <div class="col-lg-2 col-md-4">
+                    <ul class="list-footer" data-aos="fade-up">
+                        <li>
+                            <a href="#home" class="nav-link scroll">
+                                AnaSayfa
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a href="#about" class="nav-link scroll">
+                                Geliştirme Araçları
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a href="#services" class="nav-link scroll">
+                                Hakkında
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#projects" class="nav-link scroll">
+                                Görseller
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="nav-link scroll">
+                                İletişim
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 mt-sm-5">
+                    <ul class="list-footer" data-aos="fade-up">
+                        <li>
+                            <a href="/login/writerlogin" class="nav-link">
+                                Giriş
+                            </a>
+                        </li>
+                        <li class="my-2">
+                            <a href="/Register/index" class="nav-link">
+                                Kayıt Ol
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="offset-lg-4"></div>
+                <div class="col-lg-4 footer-end-grid mt-md-0 mt-sm-5" data-aos="fade-up">
+                    <h4>
+                        <a href="">
+                            <i class="fas fa-crosshairs"></i> Mvc_Proje_Kampı
+                        </a>
+                    </h4>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between pt-lg-3  footer-bottom-cpy">
+                <div class="copy-right-w3ls">
+                    <p>
+                        © 2021 Mvc Proje Kampı. Tüm hakları saklıdır | Design by
+                        <a> W3layouts </a>
 
+                    </p>
+                </div>
+                <div class="social-content pb-md-0 pb-4">
+                    <ul class="social-icons text-center d-flex">
+                        <li class="ml-lg-5">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-google-plus-g"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div><hr />
+        </div>
+    </footer>
+    <script src="~/AdminLTE-3.0.4/web/js/jquery-2.2.3.min.js"></script>
+    <script src='~/AdminLTE-3.0.4/web/js/aos.js'></script>
+    <script>
+        AOS.init({
+            easing: 'ease-out-back',
+            duration: 1000
+        });
+
+    </script>
+    <script>
+        $(() => {
+            $(window).scroll(() => {
+                var windowTop = $(window).scrollTop();
+                windowTop > 100 ? $('nav').addClass('navShadow') : $('nav').removeClass('navShadow');
+                windowTop > 100 ? $('ul.nav-honey').css('top', '50px') : $('ul.nav-honey').css('top', '160px');
+            });
+            $('#logo').on('click', () => {
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            //            //Smooth Scrolling Using Navigation Menu
+            //            $('a[href*="#"]').on('click', function(e) {
+            //                $('html,body').animate({
+            //                    scrollTop: $($(this).attr('href')).offset().top - 100
+            //                }, 500);
+            //                e.preventDefault();
+            //            });
+
+            //Toggle Menu
+            $('#menu-toggle').on('click', () => {
+                $('#menu-toggle').toggleClass('closeMenu');
+                $('ul').toggleClass('showMenu');
+
+                $('li').on('click', () => {
+                    $('ul').removeClass('showMenu');
+                    $('#menu-toggle').removeClass('closeMenu');
+                });
+            });
+
+        });
+
+    </script>
+    <script src="~/AdminLTE-3.0.4/web/js/jquery.roadmap.js"></script>
+    <script src="~/AdminLTE-3.0.4/web/js/simpleLightbox.js"></script>
+    <script>
+        $('.proj_gallery_grid a').simpleLightbox();
+
+    </script>
+    <script src="~/AdminLTE-3.0.4/web/js/jquery.waypoints.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/web/js/jquery.countup.js"></script>
+    <script>
+        $('.counter').countUp();
+    </script>
+    <script src="~/AdminLTE-3.0.4/web/js/move-top.js"></script>
+    <script src="~/AdminLTE-3.0.4/web/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            /*
+                                    var defaults = {
+                                          containerID: 'toTop', // fading element id
+                                        containerHoverID: 'toTopHover', // fading element hover id
+                                        scrollSpeed: 1200,
+                                        easingType: 'linear'
+                                     };
+                                    */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+
+    </script>
+    <script src="~/AdminLTE-3.0.4/web/js/bootstrap.js"></script>
     @Scripts.Render("~/bundles/jquery")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -11,22 +11,20 @@ using System.Web.Mvc;
 
 namespace YouTubeMvc.Controllers
 {
+    [Authorize(Roles = "A")]
     public class AdminCategoryController : Controller
     {
         readonly private CategoryManager cm = new CategoryManager(new EfCategoryDal());
-        [Authorize(Roles ="A")]
         public ActionResult Index()
         {
             var categoryvalues = cm.GetList();
             return View(categoryvalues);
         }
-
         [HttpGet]
         public ActionResult AddCategory()
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult AddCategory(Category p)
         {
@@ -34,8 +32,18 @@ namespace YouTubeMvc.Controllers
             ValidationResult results = categoryvalidator.Validate(p);
             if (results.IsValid)
             {
-                cm.CategoryAddBL(p);
-                return RedirectToAction("Index");
+                foreach (var item in cm.GetList())
+                {
+                    if (item.CategoryName == p.CategoryName)
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        cm.CategoryAddBL(p);
+                        return RedirectToAction("Index");
+                    }
+                }
             }
             else
             {
@@ -46,21 +54,18 @@ namespace YouTubeMvc.Controllers
             }
             return View();
         }
-
         public ActionResult DeleteCategory(int id)
         {
             var categoryvalue = cm.GetById(id);
             cm.CategoryDelete(categoryvalue);
             return RedirectToAction("Index");
         }
-
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
             var categoryvalue = cm.GetById(id);
             return View(categoryvalue);
         }
-
         [HttpPost]
         public ActionResult EditCategory(Category p)
         {
