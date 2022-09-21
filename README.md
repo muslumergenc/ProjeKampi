@@ -5,3 +5,5 @@
 * Entity Framework
 * MVC Pattern
 * Code First
+* ValidationRules-Fluent
+* HashingHelper
